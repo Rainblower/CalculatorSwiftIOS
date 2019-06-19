@@ -14,6 +14,7 @@
 		10092F7822BA2F3A004499AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10092F7622BA2F3A004499AB /* LaunchScreen.storyboard */; };
 		10092F8322BA2F3A004499AB /* CalculatorSwiftIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10092F8222BA2F3A004499AB /* CalculatorSwiftIOSTests.swift */; };
 		10092F8E22BA2F3A004499AB /* CalculatorSwiftIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10092F8D22BA2F3A004499AB /* CalculatorSwiftIOSUITests.swift */; };
+		10092F9E22BA31FC004499AB /* Calculator.xd in Resources */ = {isa = PBXBuildFile; fileRef = 10092F9D22BA31FC004499AB /* Calculator.xd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		10092F8922BA2F3A004499AB /* CalculatorSwiftIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorSwiftIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10092F8D22BA2F3A004499AB /* CalculatorSwiftIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorSwiftIOSUITests.swift; sourceTree = "<group>"; };
 		10092F8F22BA2F3A004499AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10092F9D22BA31FC004499AB /* Calculator.xd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calculator.xd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		10092F6C22BA2F38004499AB /* CalculatorSwiftIOS */ = {
 			isa = PBXGroup;
 			children = (
+				10092F9B22BA3084004499AB /* Resources */,
 				10092F6D22BA2F38004499AB /* AppDelegate.swift */,
 				10092F6F22BA2F38004499AB /* ViewController.swift */,
 				10092F7122BA2F38004499AB /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				10092F8F22BA2F3A004499AB /* Info.plist */,
 			);
 			path = CalculatorSwiftIOSUITests;
+			sourceTree = "<group>";
+		};
+		10092F9B22BA3084004499AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				10092F9D22BA31FC004499AB /* Calculator.xd */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10092F7822BA2F3A004499AB /* LaunchScreen.storyboard in Resources */,
+				10092F9E22BA31FC004499AB /* Calculator.xd in Resources */,
 				10092F7522BA2F3A004499AB /* Assets.xcassets in Resources */,
 				10092F7322BA2F38004499AB /* Main.storyboard in Resources */,
 			);
