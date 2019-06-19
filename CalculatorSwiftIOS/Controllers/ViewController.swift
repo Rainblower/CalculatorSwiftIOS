@@ -30,16 +30,12 @@ class ViewController: UIViewController {
     @IBAction func buttonClick(_ sender: UIButton) {
         
         guard var result = resultLabel.text else { return }
-        guard var resultFloat = Float(result) else { return }
+        guard let resultFloat = Float(result) else { return }
         
-       
-        
-        if result == "0" {
-            result = ""
+        if result.count >= 1 && result.first == "0" && !result.contains(".") {
+            result.removeFirst()
         }
-        
-       
-        
+
         switch sender.titleLabel?.text {
         case ",":
             result = "\(result)."
@@ -122,18 +118,22 @@ class ViewController: UIViewController {
                 result = "\(firstValue + secondValue)"
                 firstValue = secondValue
                 secondValue = 0
+                result = floatInt(result: result)
             case "-":
                 result = "\(firstValue - secondValue)"
                 firstValue = secondValue
                 secondValue = 0
+                result = floatInt(result: result)
             case "/":
                 result = "\(firstValue / secondValue)"
                 firstValue = secondValue
                 secondValue = 0
+                result = floatInt(result: result)
             case "x":
                 result = "\(firstValue * secondValue)"
                 firstValue = secondValue
                 secondValue = 0
+                result = floatInt(result: result)
             default:
                 break
             }
@@ -143,10 +143,22 @@ class ViewController: UIViewController {
             break
         }
         
-        if result == "" { result = "0"}
+//        if result == "" { result = "0"}
+        
+       
         
         resultLabel.text = result
 
+
+    }
+    
+    func floatInt(result: String) -> String {
+        guard let res = Float(result) else { return result}
+        if res.truncatingRemainder(dividingBy: 1.0) == 0 {
+            return "\(Int(res))"
+        } else {
+            return result
+        }
     }
 }
 
