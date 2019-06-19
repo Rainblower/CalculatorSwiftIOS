@@ -99,12 +99,11 @@
 		10092F6C22BA2F38004499AB /* CalculatorSwiftIOS */ = {
 			isa = PBXGroup;
 			children = (
+				1009301A22BA7DEF004499AB /* Controllers */,
+				1009301922BA7DDF004499AB /* Views */,
 				10092F9B22BA3084004499AB /* Resources */,
 				10092F6D22BA2F38004499AB /* AppDelegate.swift */,
-				10092F6F22BA2F38004499AB /* ViewController.swift */,
-				10092F7122BA2F38004499AB /* Main.storyboard */,
 				10092F7422BA2F3A004499AB /* Assets.xcassets */,
-				10092F7622BA2F3A004499AB /* LaunchScreen.storyboard */,
 				10092F7922BA2F3A004499AB /* Info.plist */,
 			);
 			path = CalculatorSwiftIOS;
@@ -134,6 +133,23 @@
 				10092F9D22BA31FC004499AB /* Calculator.xd */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1009301922BA7DDF004499AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				10092F7622BA2F3A004499AB /* LaunchScreen.storyboard */,
+				10092F7122BA2F38004499AB /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1009301A22BA7DEF004499AB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				10092F6F22BA2F38004499AB /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
