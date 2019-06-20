@@ -18,11 +18,13 @@ class ViewController: UIViewController {
     var secondValue: Float = 0
     var oper = ""
     var isPositiv = true
+    var tempResult = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
+        
         // Do any additional setup after loading the view.
     }
 
@@ -32,9 +34,11 @@ class ViewController: UIViewController {
         guard var result = resultLabel.text else { return }
         guard let resultFloat = Float(result) else { return }
         
+  
         if result.count >= 1 && result.first == "0" && !result.contains(".") {
             result.removeFirst()
         }
+        
 
         switch sender.titleLabel?.text {
         case ",":
@@ -81,26 +85,18 @@ class ViewController: UIViewController {
             firstValue = 0
             secondValue = 0
         case "+":
-    
-
             oper = "+"
             firstValue = resultFloat
             result = "0"
         case "-":
- 
-
             oper = "-"
             firstValue = resultFloat
             result = "0"
         case "/":
-           
-
             oper = "/"
             firstValue = resultFloat
             result = "0"
         case "x":
-          
-
             oper = "x"
             firstValue = resultFloat
             result = "0"
@@ -113,30 +109,7 @@ class ViewController: UIViewController {
                 secondValue = resultFloat
             }
             
-            switch oper {
-            case "+":
-                result = "\(firstValue + secondValue)"
-                firstValue = secondValue
-                secondValue = 0
-                result = floatInt(result: result)
-            case "-":
-                result = "\(firstValue - secondValue)"
-                firstValue = secondValue
-                secondValue = 0
-                result = floatInt(result: result)
-            case "/":
-                result = "\(firstValue / secondValue)"
-                firstValue = secondValue
-                secondValue = 0
-                result = floatInt(result: result)
-            case "x":
-                result = "\(firstValue * secondValue)"
-                firstValue = secondValue
-                secondValue = 0
-                result = floatInt(result: result)
-            default:
-                break
-            }
+            result = calculating()
       
             
         default:
@@ -148,8 +121,38 @@ class ViewController: UIViewController {
        
         
         resultLabel.text = result
+        tempResult = result
 
-
+    }
+    
+    func calculating() -> String {
+        
+        guard var result = resultLabel.text else { return "" }
+        
+        switch oper {
+        case "+":
+            result  = "\(firstValue + secondValue)"
+            firstValue = secondValue
+            secondValue = 0
+            return floatInt(result: result)
+        case "-":
+            result  = "\(firstValue - secondValue)"
+            firstValue = secondValue
+            secondValue = 0
+            return floatInt(result: result)
+        case "/":
+            result  = "\(firstValue / secondValue)"
+            firstValue = secondValue
+            secondValue = 0
+            return floatInt(result: result)
+        case "x":
+            result  = "\(firstValue * secondValue)"
+            firstValue = secondValue
+            secondValue = 0
+            return floatInt(result: result)
+        default:
+            return result
+        }
     }
     
     func floatInt(result: String) -> String {
