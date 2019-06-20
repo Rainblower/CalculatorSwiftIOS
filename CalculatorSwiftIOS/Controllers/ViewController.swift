@@ -24,6 +24,13 @@ class ViewController: UIViewController {
 
     
     @IBOutlet var buttons: [UIButton]!
+    @IBOutlet var landscapeButtons: [UIButton]! {
+        didSet {
+            for button in landscapeButtons {
+                button.isHidden = true
+            }
+        }
+    }
     
     var firstValue: Float = 0
     var secondValue: Float = 0
@@ -31,6 +38,7 @@ class ViewController: UIViewController {
     var isPositiv = true
     var tempResult = ""
     var txtResult = ""
+
     
     @objc func swipe() {
         if (resultLabel.text?.count)! > 1 {
@@ -43,12 +51,24 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        if UIDevice.current.orientation.isLandscape {
+        changeButtons(orentation: UIDevice.current.orientation)
+    }
+    
+    func changeButtons(orentation: UIDeviceOrientation) {
+        if orentation.isLandscape {
             for button in buttons {
+                button.layer.cornerRadius = 24
+            }
+            for button in landscapeButtons {
+                button.isHidden = false
                 button.layer.cornerRadius = 24
             }
         } else {
             for button in buttons {
+                button.layer.cornerRadius = 32
+            }
+            for button in landscapeButtons {
+                button.isHidden = true
                 button.layer.cornerRadius = 32
             }
         }
@@ -212,6 +232,10 @@ class ViewController: UIViewController {
         default:
             return result
         }
+    }
+    
+    func mathOperation() {
+        
     }
     
     func floatInt(result: String) -> String {
