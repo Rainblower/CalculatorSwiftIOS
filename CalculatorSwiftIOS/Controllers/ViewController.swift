@@ -10,7 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel! {
+        didSet {
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+            
+            rightSwipe.direction = .right
+            leftSwipe.direction = .left
+            resultLabel.addGestureRecognizer(rightSwipe)
+            resultLabel.addGestureRecognizer(leftSwipe)
+        }
+    }
+
     
     @IBOutlet var buttons: [UIButton]!
     
@@ -19,15 +30,29 @@ class ViewController: UIViewController {
     var oper = ""
     var isPositiv = true
     var tempResult = ""
+    var txtResult = ""
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-        // Do any additional setup after loading the view.
+    @objc func swipe() {
+        if (resultLabel.text?.count)! > 1 {
+            resultLabel.text?.removeLast()
+        } else {
+            resultLabel.text = "0"
+        }
     }
-
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if UIDevice.current.orientation.isLandscape {
+            for button in buttons {
+                button.layer.cornerRadius = 24
+            }
+        } else {
+            for button in buttons {
+                button.layer.cornerRadius = 32
+            }
+        }
+    }
 
     @IBAction func buttonClick(_ sender: UIButton) {
         
@@ -39,8 +64,17 @@ class ViewController: UIViewController {
             result.removeFirst()
         }
         
+        if oper != "" {
+            
+        }
 
         switch sender.titleLabel?.text {
+        case "%":
+            if oper == "" {
+                result = "\(resultFloat / 100)"
+            } else {
+                result = "\(Int(firstValue))"
+            }
         case ",":
             result = "\(result)."
         case "+/-":
@@ -80,26 +114,32 @@ class ViewController: UIViewController {
             result = "\(result)8"
         case "9":
             result = "\(result)9"
-        case "C":
+        case "AC":
             result = "0"
             firstValue = 0
             secondValue = 0
+            oper = ""
+            customize(button: nil)
         case "+":
             oper = "+"
             firstValue = resultFloat
             result = "0"
+            customize(button: sender)
         case "-":
             oper = "-"
             firstValue = resultFloat
             result = "0"
+            customize(button: sender)
         case "/":
             oper = "/"
             firstValue = resultFloat
             result = "0"
+            customize(button: sender)
         case "x":
             oper = "x"
             firstValue = resultFloat
             result = "0"
+            customize(button: sender)
         case "=":
             
 
@@ -110,19 +150,38 @@ class ViewController: UIViewController {
             }
             
             result = calculating()
-      
+            customize(button: nil)
+            oper = ""
             
         default:
             break
         }
-        
-//        if result == "" { result = "0"}
-        
        
-        
         resultLabel.text = result
         tempResult = result
-
+    }
+    
+    func customize(button: UIButton?) {
+        let orange = UIColor.init(red: 255/255, green: 167/255, blue: 0/255, alpha: 1)
+        
+        let operButtons = buttons.filter({ (btn) -> Bool in
+            let label = btn.titleLabel?.text
+            if label == "-" || label == "+" || label == "/" || label == "x" {
+                return true
+            } else {
+                return false
+            }
+        })
+        
+        for item in operButtons {
+            item.backgroundColor = orange
+            item.setTitleColor(.white, for: .normal)
+        }
+        
+        if button != nil {
+            button!.backgroundColor = .white
+            button!.setTitleColor(orange, for: .normal)
+        }
     }
     
     func calculating() -> String {
