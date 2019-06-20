@@ -40,6 +40,12 @@ class ViewController: UIViewController {
     var txtResult = ""
 
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        changeButtons(orentation: .portrait)
+    }
+    
     @objc func swipe() {
         if (resultLabel.text?.count)! > 1 {
             resultLabel.text?.removeLast()
@@ -65,11 +71,11 @@ class ViewController: UIViewController {
             }
         } else {
             for button in buttons {
-                button.layer.cornerRadius = 32
+                button.layer.cornerRadius = 38
             }
             for button in landscapeButtons {
                 button.isHidden = true
-                button.layer.cornerRadius = 32
+                button.layer.cornerRadius = 38
             }
         }
     }
